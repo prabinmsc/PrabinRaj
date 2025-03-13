@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- id name cannot be used in other ids, id name must be unique -->
+    <!-- In queryselectorAll, use .name for class and #name for id and also use loop to get values -->
+    <!-- a[i].value must be written inside the loop -->
+    <!-- in queryselector it will store values as node list-(element,comment,text,input)
+     to avoid this use loop to get values. -->
+    
+    Email:  <input type="email"  class="text"> <br><br>
+    Password: <input type="password" class="text"><br><br>
+    Address: <textarea class="text"></textarea>
+    <button onclick="one()">Submit</button>
+
+</body>
+<script>
+    function one(){
+    var a=document.querySelectorAll(".text")
+    for(let i=0;i<a.length;i++){
+        console.log(a[i].value)
+    }
+}
+
+
+</script>
+</html>

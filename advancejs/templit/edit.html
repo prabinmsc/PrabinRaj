@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Data in Table</title>
+    <style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        .edit-button, .delete-button, .submit-button, .cancel-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .edit-button:hover, .delete-button:hover, .submit-button:hover, .cancel-button:hover {
+            background-color: #45a049;
+        }
+        .delete-button {
+            background-color: red;
+        }
+        .delete-button:hover {
+            background-color: darkred;
+        }
+        input[type="text"] {
+            padding: 5px;
+            width: 80%;
+        }
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Fruits Data Table</h2>
+    <table id="fruitsTable">
+        <thead>
+            <tr>
+                <th>Index</th>
+                <th>Fruit</th>
+                <th>Action</th> 
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <script>
+        const fruits = ["apple", "banana", "cherry"];
+        
+        const keysIterator = fruits.keys();
+        
+        const tableBody = document.querySelector("#fruitsTable tbody");
+
+        for (let key of keysIterator) {
+            const row = document.createElement("tr");  
+            const indexCell = document.createElement("td");  
+            const fruitCell = document.createElement("td");  
+            const actionCell = document.createElement("td");  
+            
+            indexCell.textContent = key; 
+            fruitCell.textContent = fruits[key];  
+            
+            
+            const editButton = document.createElement("button");
+            editButton.textContent = "Edit";
+            editButton.classList.add("edit-button");  
+            
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "Delete";
+            deleteButton.classList.add("delete-button");  
+            
+            editButton.addEventListener("click", function() {
+                const currentFruit = fruitCell.textContent;
+                fruitCell.innerHTML = `
+                    <input type="text" value="${currentFruit}" />
+                    <div class="action-buttons">
+                        <button class="submit-button">Submit</button>
+                        <button class="cancel-button">Cancel</button>
+                    </div>
+                `;
+                
+                const inputField = fruitCell.querySelector("input");
+                const submitButton = fruitCell.querySelector(".submit-button");
+                const cancelButton = fruitCell.querySelector(".cancel-button");
+
+                
+                submitButton.addEventListener("click", function() {
+                    const newFruit = inputField.value;
+                    fruitCell.textContent = newFruit;  
+                });
+
+                cancelButton.addEventListener("click", function() {
+                    fruitCell.textContent = currentFruit;  
+                });
+            });
+            
+            deleteButton.addEventListener("click", function() {
+                row.remove();  
+            });
+            
+          
+            actionCell.appendChild(editButton);  
+            actionCell.appendChild(deleteButton);  
+            
+           
+            row.appendChild(indexCell); 
+            row.appendChild(fruitCell); 
+            row.appendChild(actionCell);  
+            
+           
+            tableBody.appendChild(row);  
+        }
+    </script>
+</body>
+</html>

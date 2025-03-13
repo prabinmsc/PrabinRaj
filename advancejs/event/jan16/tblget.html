@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom</title>
+    
+</head>
+<body>
+
+    <!-- table -->
+     
+    <div>
+        Product: <input type="text"  id="text1">
+        Price: <input type="number" id="text2">
+       
+        <button onclick="submit()">click</button>
+        <table border="1">
+            <thead >
+                <tr >
+                    <th>s.no</th>
+                    <th>product</th>
+                    <th>Price</th>
+            
+                </tr>
+            </thead>
+            <tbody id="tbody">
+                
+            </tbody>
+
+        </table>
+       
+
+    </div>
+
+
+</body>
+<script>
+    let num=1;
+
+    function submit(){
+        var in1=document.getElementById("text1").value
+        var in2=document.getElementById("text2").value
+        var b=document.getElementById("tbody")
+        var c=document.createElement("tr")
+        var d=document.createElement("td")
+        var e=document.createElement("td")
+        var f=document.createElement("td")
+        d.innerHTML=num++
+        e.innerHTML=in1;
+        f.innerHTML=in2;
+
+        c.append(d)
+        c.append(e)
+        c.append(f)
+        b.append(c)
+        document.getElementById("text1").value=""
+        document.getElementById("text2").value=""
+
+    }
+</script>
+
+
+</html>
